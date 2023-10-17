@@ -50,68 +50,228 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppMargin.mPage),
-              child: Row(
-                children: [
-                  const CircleAvatar(
-                    backgroundColor: AppColors.primary,
-                    radius: 17,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 3.0),
-                    child: TextButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.transparent,
-                        shadowColor: AppColors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        side: const BorderSide(
-                          width: 1,
-                          color: AppColors.black,
-                        ),
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.symmetric(horizontal: 14),
-                        fixedSize: Size(width - 109, 30),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+                right: AppMargin.mPage, left: AppMargin.mPage, bottom: 23),
+            child: Row(
+              children: [
+                const CircleAvatar(
+                  backgroundColor: AppColors.primary,
+                  radius: 17,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 3.0),
+                  child: TextButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.transparent,
+                      shadowColor: AppColors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
                       ),
-                      child: const Text(
-                        "Add New Post...",
-                        style: TextStyle(
-                          color: AppColors.black,
-                          fontFamily: AppFonts.fontFamily2,
-                          fontWeight: FontWeight.w900,
-                          fontSize: AppFonts.newPostBar,
-                        ),
+                      side: const BorderSide(
+                        width: 1,
+                        color: AppColors.black,
+                      ),
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      fixedSize: Size(width - 109, 30),
+                    ),
+                    child: const Text(
+                      "Add New Post...",
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontFamily: AppFonts.fontFamily2,
+                        fontWeight: FontWeight.w900,
+                        fontSize: AppFonts.newPostBar,
                       ),
                     ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: height - 216,
+            child: ListView.separated(
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return post(index, width, height);
+              },
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: 5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget post(index, width, height) {
+    Color postColor = index % 2 != 0 ? AppColors.primary : AppColors.secondary;
+    width -= AppMargin.mPage * 2;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppMargin.mPage),
+      child: GestureDetector(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(top: 10, left: 10, bottom: 5),
+              width: width,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(18),
+                  topLeft: Radius.circular(18),
+                ),
+                border: Border.all(
+                  color: postColor,
+                  width: 1.5,
+                ),
+              ),
+              child: Column(
+                children: [
+                  Stack(
+                    alignment: Alignment.centerRight,
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 15),
+                            child: CircleAvatar(
+                              backgroundColor: postColor,
+                              radius: 15,
+                            ),
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "Publisher",
+                                style: TextStyle(
+                                  color: postColor,
+                                  fontFamily: "Segoe UI",
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              Text(
+                                "Date",
+                                style: TextStyle(
+                                  color: postColor,
+                                  fontFamily: "Segoe UI",
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.more_horiz_rounded,
+                          color: postColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      "Contrary to popular belief, Lorem Ipsum is not simply random text. "
+                      "It has roots in a piece of classical Latin literature from 45 BC, "
+                      "making it over 2000 years old. Richard McClintock,",
+                      style: TextStyle(
+                        color: postColor,
+                        fontFamily: "Segoe UI",
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.bookmark,
+                        color: postColor,
+                        size: 13,
+                      ),
+                      Text(
+                        20.toString(),
+                        style: TextStyle(
+                          color: postColor,
+                          fontFamily: "Segoe UI",
+                          fontSize: 11,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(topLeft: Radius.circular(43), topRight: Radius.circular(43)),
-        child: BottomNavigationBar(
-          backgroundColor: AppColors.primary,
-          items: const [
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(IBuddyIcons.search),
-            ),
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(IBuddyIcons.search),
-            ),
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(IBuddyIcons.search),
+            Container(
+              width: width,
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(18),
+                  bottomRight: Radius.circular(18),
+                ),
+                border: Border.all(
+                  color: postColor,
+                  width: 1.5,
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: postColor,
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.bookmark_border,
+                          size: 17,
+                        ),
+                        Text(
+                          "Save",
+                          style: TextStyle(
+                            fontFamily: "Segoe UI",
+                            fontSize: 11,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: postColor,
+                    ),
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.send,
+                          size: 17,
+                        ),
+                        Text(
+                          "Send message",
+                          style: TextStyle(
+                            fontFamily: "Segoe UI",
+                            fontSize: 11,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
