@@ -5,7 +5,7 @@ import 'app_fonts.dart';
 TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) {
   return TextStyle(
     fontSize: fontSize,
-    fontFamily: AppFonts.fontFamily1,
+    fontFamily: AppFonts.tahoma,
     color: color,
     fontWeight: fontWeight,
   );

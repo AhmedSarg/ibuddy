@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class AppFonts {
   //* Font Name
-  static const String fontFamily1 = "Tahoma";
-  static const String fontFamily2 = "Segoe UI";
+  static const String tahoma = "Tahoma";
+  static const String segoe = "Segoe UI";
   //* Font Weight
-  static const FontWeight light = FontWeight.w300;
-  static const FontWeight regular = FontWeight.w400;
+  static const FontWeight light = FontWeight.w100;
+  static const FontWeight regular = FontWeight.w500;
   static const FontWeight medium = FontWeight.w500;
   static const FontWeight semiBold = FontWeight.w600;
-  static const FontWeight bold = FontWeight.w700;
+  static const FontWeight bold = FontWeight.w900;
   //* Font Size
   static const double s12 = 12.0;
   static const double s14 = 14.0;

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ibuddy/core/utils/app_colors.dart';
 import 'package:ibuddy/core/utils/app_values.dart';
 import 'package:ibuddy/core/utils/i_buddy_icons_icons.dart';
-
+import 'package:ibuddy/features/screens/buddy/home/account_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/chats_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/notifications_screen.dart';
 import '../../../../core/utils/app_fonts.dart';
 
 class Home extends StatelessWidget {
@@ -12,7 +15,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
@@ -23,7 +25,7 @@ class Home extends StatelessWidget {
             "IBuddy",
             style: TextStyle(
               color: AppColors.primary,
-              fontFamily: AppFonts.fontFamily1,
+              fontFamily: AppFonts.tahoma,
               fontSize: AppFonts.appBarTitle,
             ),
           ),
@@ -50,232 +52,276 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-                right: AppMargin.mPage, left: AppMargin.mPage, bottom: 23),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(43),
+          topRight: Radius.circular(43),
+        ),
+        child: BottomAppBar(
+          color: AppColors.primary,
+          child: SizedBox(
+            height: 50,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const CircleAvatar(
-                  backgroundColor: AppColors.primary,
-                  radius: 17,
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.home_outlined),
+                  color: AppColors.white,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 3.0),
-                  child: TextButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.transparent,
-                      shadowColor: AppColors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      side: const BorderSide(
-                        width: 1,
-                        color: AppColors.black,
-                      ),
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
-                      fixedSize: Size(width - 109, 30),
-                    ),
-                    child: const Text(
-                      "Add New Post...",
-                      style: TextStyle(
-                        color: AppColors.black,
-                        fontFamily: AppFonts.fontFamily2,
-                        fontWeight: FontWeight.w900,
-                        fontSize: AppFonts.newPostBar,
-                      ),
-                    ),
-                  ),
+                IconButton(
+                  onPressed: () {
+                    Get.to(() => Account());
+                  },
+                  icon: const Icon(Icons.person_outline_rounded),
+                  color: AppColors.white,
+                ),
+                IconButton(
+                  onPressed: () {
+                    Get.to(() => const Notifications());
+                  },
+                  icon: const Icon(Icons.notifications_outlined),
+                  color: AppColors.white,
+                ),
+                IconButton(
+                  onPressed: () {
+                    Get.to(() => const Chats());
+                  },
+                  icon: const Icon(Icons.message_outlined),
+                  color: AppColors.white,
                 ),
               ],
             ),
           ),
-          SizedBox(
-            height: height - 216,
-            child: ListView.separated(
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return post(index, width, height);
-              },
-              separatorBuilder: (context, index) => const Divider(),
-              itemCount: 5,
-            ),
-          ),
-        ],
+        ),
+      ),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return post(index, width, height);
+        },
+        itemCount: 10,
       ),
     );
   }
 
   Widget post(index, width, height) {
-    Color postColor = index % 2 != 0 ? AppColors.primary : AppColors.secondary;
-    width -= AppMargin.mPage * 2;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppMargin.mPage),
-      child: GestureDetector(
-        child: Column(
+    Color postColor = index % 2 == 0 ? AppColors.primary : AppColors.secondary;
+    if (index == 0) {
+      return Padding(
+        padding: const EdgeInsets.only(
+          right: AppMargin.mPage,
+          left: AppMargin.mPage,
+          bottom: 20,
+        ),
+        child: Row(
           children: [
-            Container(
-              padding: const EdgeInsets.only(top: 10, left: 10, bottom: 5),
-              width: width,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(18),
-                  topLeft: Radius.circular(18),
-                ),
-                border: Border.all(
-                  color: postColor,
-                  width: 1.5,
-                ),
-              ),
-              child: Column(
-                children: [
-                  Stack(
-                    alignment: Alignment.centerRight,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15),
-                            child: CircleAvatar(
-                              backgroundColor: postColor,
-                              radius: 15,
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "Publisher",
-                                style: TextStyle(
-                                  color: postColor,
-                                  fontFamily: "Segoe UI",
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                              Text(
-                                "Date",
-                                style: TextStyle(
-                                  color: postColor,
-                                  fontFamily: "Segoe UI",
-                                  fontSize: 11,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.more_horiz_rounded,
-                          color: postColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      "Contrary to popular belief, Lorem Ipsum is not simply random text. "
-                      "It has roots in a piece of classical Latin literature from 45 BC, "
-                      "making it over 2000 years old. Richard McClintock,",
-                      style: TextStyle(
-                        color: postColor,
-                        fontFamily: "Segoe UI",
-                        fontSize: 13,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.bookmark,
-                        color: postColor,
-                        size: 13,
-                      ),
-                      Text(
-                        20.toString(),
-                        style: TextStyle(
-                          color: postColor,
-                          fontFamily: "Segoe UI",
-                          fontSize: 11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            const CircleAvatar(
+              backgroundColor: AppColors.primary,
+              radius: 17,
             ),
-            Container(
-              width: width,
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(18),
-                  bottomRight: Radius.circular(18),
-                ),
-                border: Border.all(
-                  color: postColor,
-                  width: 1.5,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: postColor,
-                      padding: EdgeInsets.zero,
-                    ),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.bookmark_border,
-                          size: 17,
-                        ),
-                        Text(
-                          "Save",
-                          style: TextStyle(
-                            fontFamily: "Segoe UI",
-                            fontSize: 11,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                    ),
+            Padding(
+              padding: const EdgeInsets.only(left: 3.0),
+              child: TextButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.transparent,
+                  shadowColor: AppColors.transparent,
+                  foregroundColor: AppColors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: postColor,
-                    ),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.send,
-                          size: 17,
-                        ),
-                        Text(
-                          "Send message",
-                          style: TextStyle(
-                            fontFamily: "Segoe UI",
-                            fontSize: 11,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                    ),
+                  side: const BorderSide(
+                    width: 1,
+                    color: AppColors.grey,
                   ),
-                ],
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  fixedSize: Size(width - 109, 30),
+                ),
+                child: const Text(
+                  "Add New Post...",
+                  style: TextStyle(
+                    color: AppColors.black,
+                    fontFamily: AppFonts.segoe,
+                    fontWeight: AppFonts.bold,
+                    fontSize: AppFonts.newPostBar,
+                  ),
+                ),
               ),
             ),
           ],
         ),
-      ),
-    );
+      );
+    } else {
+      width -= AppMargin.mPage * 2;
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppMargin.mPage, vertical: 5),
+        child: GestureDetector(
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(top: 10, left: 10, bottom: 5),
+                width: width,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(18),
+                    topLeft: Radius.circular(18),
+                  ),
+                  border: Border.all(
+                    color: postColor,
+                    width: 1.5,
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Stack(
+                      alignment: Alignment.centerRight,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15),
+                              child: CircleAvatar(
+                                backgroundColor: postColor,
+                                radius: 15,
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "Publisher",
+                                  style: TextStyle(
+                                    color: postColor,
+                                    fontFamily: AppFonts.segoe,
+                                    fontWeight: AppFonts.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Text(
+                                  "Date",
+                                  style: TextStyle(
+                                    color: postColor,
+                                    fontFamily: AppFonts.segoe,
+                                    fontWeight: AppFonts.regular,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.more_horiz_rounded,
+                            color: postColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        "Contrary to popular belief, Lorem Ipsum is not simply random text. "
+                        "It has roots in a piece of classical Latin literature from 45 BC, "
+                        "making it over 2000 years old. Richard McClintock,",
+                        style: TextStyle(
+                          color: postColor,
+                          fontFamily: AppFonts.segoe,
+                          fontWeight: AppFonts.regular,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.bookmark,
+                          color: postColor,
+                          size: 13,
+                        ),
+                        Text(
+                          20.toString(),
+                          style: TextStyle(
+                            color: postColor,
+                            fontFamily: AppFonts.segoe,
+                            fontWeight: AppFonts.regular,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: width,
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(18),
+                    bottomRight: Radius.circular(18),
+                  ),
+                  border: Border.all(
+                    color: postColor,
+                    width: 1.5,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: postColor,
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.bookmark_border,
+                            size: 17,
+                          ),
+                          Text(
+                            "Save",
+                            style: TextStyle(
+                              fontFamily: AppFonts.segoe,
+                              fontWeight: AppFonts.bold,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: postColor,
+                      ),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.send,
+                            size: 17,
+                          ),
+                          Text(
+                            "Send message",
+                            style: TextStyle(
+                              fontFamily: AppFonts.segoe,
+                              fontWeight: AppFonts.bold,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 }

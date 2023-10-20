@@ -44,7 +44,7 @@ class _MainNavigatorState extends State<MainNavigator> {
                 IconButton(
                   onPressed: () {
                     setState(() {
-                      screen = const Account();
+                      screen = Account();
                     });
                   },
                   icon: const Icon(Icons.person_outline_rounded),

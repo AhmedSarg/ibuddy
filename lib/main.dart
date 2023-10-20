@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:ibuddy/features/screens/buddy/home/main_navigator.dart';
+
+import 'features/screens/buddy/home/home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // home: SelectionScreen()
-      home: MainNavigator(),
+      home: Home(),
     );
   }
 }
