@@ -52,6 +52,7 @@ class Chats extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: AppColors.nearlyWhite,
       body: ListView.builder(
         itemBuilder: (context, index) {
           return chat(index, width, height);

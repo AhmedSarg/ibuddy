@@ -3,13 +3,16 @@ import 'package:get/get.dart';
 import 'package:ibuddy/core/utils/app_colors.dart';
 import 'package:ibuddy/core/utils/app_values.dart';
 import 'package:ibuddy/core/utils/i_buddy_icons_icons.dart';
-import 'package:ibuddy/features/screens/buddy/home/account_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/account_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/chats_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/menu_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/notifications_screen.dart';
 import '../../../../core/utils/app_fonts.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+
+  final scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,9 @@ class Home extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: AppMargin.mPage - 16),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => const Menu());
+              },
               icon: const Icon(
                 IBuddyIcons.apps,
                 color: AppColors.primary,
@@ -65,7 +70,13 @@ class Home extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    scrollController.animateTo(
+                      0.0,
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeInOut,
+                    );
+                  },
                   icon: const Icon(Icons.home_outlined),
                   color: AppColors.white,
                 ),
@@ -95,7 +106,9 @@ class Home extends StatelessWidget {
           ),
         ),
       ),
+      backgroundColor: AppColors.nearlyWhite,
       body: ListView.builder(
+        controller: scrollController,
         itemBuilder: (context, index) {
           return post(index, width, height);
         },
@@ -108,10 +121,9 @@ class Home extends StatelessWidget {
     Color postColor = index % 2 == 0 ? AppColors.primary : AppColors.secondary;
     if (index == 0) {
       return Padding(
-        padding: const EdgeInsets.only(
-          right: AppMargin.mPage,
-          left: AppMargin.mPage,
-          bottom: 20,
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppMargin.mPage,
+          vertical: 10,
         ),
         child: Row(
           children: [
@@ -155,7 +167,8 @@ class Home extends StatelessWidget {
     } else {
       width -= AppMargin.mPage * 2;
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppMargin.mPage, vertical: 5),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppMargin.mPage, vertical: 10),
         child: GestureDetector(
           child: Column(
             children: [
@@ -163,6 +176,7 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 10, left: 10, bottom: 5),
                 width: width,
                 decoration: BoxDecoration(
+                  color: AppColors.white,
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(18),
                     topLeft: Radius.circular(18),
@@ -212,6 +226,7 @@ class Home extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () {},
+                          splashRadius: 1,
                           icon: Icon(
                             Icons.more_horiz_rounded,
                             color: postColor,
@@ -258,6 +273,7 @@ class Home extends StatelessWidget {
                 width: width,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
+                  color: AppColors.white,
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(18),
                     bottomRight: Radius.circular(18),

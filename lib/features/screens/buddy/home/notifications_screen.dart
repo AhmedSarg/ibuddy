@@ -29,6 +29,7 @@ class Notifications extends StatelessWidget {
         ),
         shape: const Border(bottom: BorderSide(color: AppColors.grey)),
       ),
+      backgroundColor: AppColors.nearlyWhite,
       body: ListView.separated(
         itemBuilder: (context, index) {
           return notification(index, width, height);
@@ -130,33 +131,3 @@ class Notifications extends StatelessWidget {
     );
   }
 }
-
-// Row(
-// children: const [
-// Text(
-// "AhmedaDawesf",
-// overflow: TextOverflow.ellipsis,
-// softWrap: false,
-// maxLines: 1,
-// style: TextStyle(
-// color: AppColors.black,
-// fontFamily: AppFonts.segoe,
-// fontWeight: AppFonts.semiBold,
-// fontSize: 15,
-// ),
-// ),
-// Text(" "),
-// Text(
-// "tagged you in a post",
-// overflow: TextOverflow.ellipsis,
-// softWrap: false,
-// maxLines: 1,
-// style: TextStyle(
-// color: AppColors.grey,
-// fontFamily: AppFonts.segoe,
-// fontWeight: AppFonts.semiBold,
-// fontSize: 13,
-// ),
-// ),
-// ],
-// ),

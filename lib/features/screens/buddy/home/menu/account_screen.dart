@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_fonts.dart';
-import '../../../../core/utils/app_values.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_fonts.dart';
+import '../../../../../core/utils/app_values.dart';
 
 class Account extends StatelessWidget {
   Account({super.key});
@@ -46,7 +46,6 @@ class Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
@@ -62,6 +61,7 @@ class Account extends StatelessWidget {
           ),
         ),
       ),
+      backgroundColor: AppColors.nearlyWhite,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppMargin.mPage),
