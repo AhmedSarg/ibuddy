@@ -7,6 +7,14 @@ void main() {
   runApp(const MyApp());
 }
 
+//  bottom app bar
+//  notification margin
+//  follow button and username in user account
+//  available time and advantage
+//  photo grid
+//  buddy and user profile handling
+//  spacing standards
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override

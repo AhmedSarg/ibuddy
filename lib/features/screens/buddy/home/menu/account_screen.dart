@@ -74,7 +74,7 @@ class Account extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       children: [
                         const CircleAvatar(
-                          backgroundColor: AppColors.primary,
+                          backgroundColor: AppColors.secondary,
                           radius: 70,
                         ),
                         GestureDetector(
@@ -100,7 +100,7 @@ class Account extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.only(top: 10),
                       child: Text(
-                        "Noor Jack",
+                        "Youssef Negm",
                         style: TextStyle(
                           color: AppColors.black,
                           fontFamily: AppFonts.segoe,

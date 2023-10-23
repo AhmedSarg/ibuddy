@@ -6,6 +6,7 @@ import 'package:ibuddy/core/utils/i_buddy_icons_icons.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/account_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/chats_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/menu_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/notifications_screen.dart';
 import '../../../../core/utils/app_fonts.dart';
 
@@ -82,7 +83,7 @@ class Home extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    Get.to(() => Account());
+                    Get.to(() => Profile());
                   },
                   icon: const Icon(Icons.person_outline_rounded),
                   color: AppColors.white,
@@ -195,9 +196,14 @@ class Home extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 15),
-                              child: CircleAvatar(
-                                backgroundColor: postColor,
-                                radius: 15,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(() => Account());
+                                },
+                                child: CircleAvatar(
+                                  backgroundColor: postColor,
+                                  radius: 15,
+                                ),
                               ),
                             ),
                             Column(

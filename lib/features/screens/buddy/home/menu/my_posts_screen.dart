@@ -22,9 +22,9 @@ class MyPosts extends StatelessWidget {
           "My Posts",
           style: TextStyle(
             color: AppColors.black,
-            fontFamily: AppFonts.segoe,
-            fontWeight: AppFonts.semiBold,
-            fontSize: 20,
+            fontFamily: AppFonts.tahoma,
+            fontWeight: AppFonts.regular,
+            fontSize: 24,
           ),
         ),
         leading: Padding(
@@ -54,13 +54,13 @@ class MyPosts extends StatelessWidget {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          return post(index, width, height);
+          return myPost(index, width, height);
         },
       ),
     );
   }
 
-  Widget post(index, width, height) {
+  Widget myPost(index, width, height) {
     Color postColor = AppColors.primary;
     width -= AppMargin.mPage * 2;
     return Padding(

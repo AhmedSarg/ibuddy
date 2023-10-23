@@ -3,8 +3,12 @@ import 'package:get/get.dart';
 import 'package:ibuddy/core/utils/app_colors.dart';
 import 'package:ibuddy/core/utils/app_values.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/account_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/followers_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/following_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/my_posts_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/saved_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/settings_screen.dart';
 
 import '../../../../../core/utils/app_fonts.dart';
 import '../../../../../core/utils/i_buddy_icons_icons.dart';
@@ -98,7 +102,7 @@ class Menu extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(() => Account());
+                    Get.to(() => Profile());
                   },
                   child: Container(
                     height: 50,
@@ -229,7 +233,9 @@ class Menu extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const Followers());
+                  },
                   child: Container(
                     height: 50,
                     width: width - AppMargin.mPage * 2,
@@ -271,7 +277,9 @@ class Menu extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const Following());
+                  },
                   child: Container(
                     height: 50,
                     width: width - AppMargin.mPage * 2,
@@ -355,7 +363,9 @@ class Menu extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => Settings());
+                  },
                   child: Container(
                     height: 50,
                     width: width - AppMargin.mPage * 2,
