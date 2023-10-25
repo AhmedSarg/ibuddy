@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:ibuddy/core/utils/app_colors.dart';
 import 'package:ibuddy/core/utils/app_values.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/about_screen.dart';
 import '../../../../../core/utils/app_fonts.dart';
 
 class Settings extends StatelessWidget {
@@ -59,7 +60,9 @@ class Settings extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 15, top: 30),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.to(() => const About());
+                },
                 child: Container(
                   height: 50,
                   width: width - AppMargin.mPage * 2,
@@ -218,15 +221,6 @@ class Settings extends StatelessWidget {
                             )
                           ],
                         ),
-                        //   (
-                        //   current: false,
-                        //   values: const [false, true],
-                        //   // value: deactivateValue.value,
-                        //   // activeColor: AppColors.primary,
-                        //   // onChanged: (value) {
-                        //   //   deactivateValue.toggle();
-                        //   // },
-                        // ),
                       ),
                     ],
                   ),
@@ -354,15 +348,6 @@ class Settings extends StatelessWidget {
                             )
                           ],
                         ),
-                        //   (
-                        //   current: false,
-                        //   values: const [false, true],
-                        //   // value: deactivateValue.value,
-                        //   // activeColor: AppColors.primary,
-                        //   // onChanged: (value) {
-                        //   //   deactivateValue.toggle();
-                        //   // },
-                        // ),
                       ),
                     ],
                   ),
