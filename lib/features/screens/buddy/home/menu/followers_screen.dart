@@ -79,7 +79,7 @@ class Followers extends StatelessWidget {
             );
           } else {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppMargin.mPage),
+              padding: EdgeInsets.only(right: AppMargin.mPage, left: AppMargin.mPage, bottom: index == 20 - 1 ? 15 : 0),
               child: follower(index, width),
             );
           }
