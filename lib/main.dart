@@ -14,6 +14,8 @@ void main() {
 //  photo grid
 //  buddy and user profile handling
 //  spacing standards
+//  language icons
+//  edit and add in profile details
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

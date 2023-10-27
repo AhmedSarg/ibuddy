@@ -3,6 +3,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:ibuddy/core/utils/app_colors.dart';
 import 'package:ibuddy/core/utils/app_values.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/age_edit_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/bio_edit_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/country_edit_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/gender_edit_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/interests_edit_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/work_edit_screen.dart';
 import '../../../../../../../core/utils/app_fonts.dart';
 
 class About extends StatelessWidget {
@@ -60,7 +66,9 @@ class About extends StatelessWidget {
                                   fontSize: 18),
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => const BioEdit());
+                              },
                               color: AppColors.primary,
                               iconSize: 20,
                               splashRadius: 1,
@@ -122,7 +130,9 @@ class About extends StatelessWidget {
                           ],
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => const CountryEdit());
+                          },
                           color: AppColors.primary,
                           iconSize: 20,
                           splashRadius: 1,
@@ -172,7 +182,9 @@ class About extends StatelessWidget {
                           ],
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => const AgeEdit());
+                          },
                           color: AppColors.primary,
                           iconSize: 20,
                           splashRadius: 1,
@@ -222,7 +234,9 @@ class About extends StatelessWidget {
                           ],
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => GenderEdit());
+                          },
                           color: AppColors.primary,
                           iconSize: 20,
                           splashRadius: 1,
@@ -244,7 +258,9 @@ class About extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.to(() => const WorkEdit());
+                          },
                           child: const Text(
                             "Add your work",
                             style: TextStyle(
@@ -257,7 +273,7 @@ class About extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ), //Add Work
+                  ), //Work
                   Padding(
                     padding: const EdgeInsets.only(top: 12.5, bottom: 20),
                     child: Row(
@@ -271,7 +287,9 @@ class About extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.to(() => InterestsEdit());
+                          },
                           child: const Text(
                             "Add your interests",
                             style: TextStyle(
@@ -284,7 +302,7 @@ class About extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ), //Add Interests
+                  ), //Interests
                 ],
               ), //Details
               Column(
