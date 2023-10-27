@@ -8,6 +8,7 @@ import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/bio_edit
 import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/country_edit_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/gender_edit_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/interests_edit_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/language_edit_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/social_edit_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/profile_details/work_edit_screen.dart';
 import '../../../../../../../core/utils/app_fonts.dart';
@@ -444,7 +445,9 @@ class About extends StatelessWidget {
                               fontSize: 18),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => const LanguageEdit());
+                          },
                           style: TextButton.styleFrom(
                             backgroundColor: AppColors.transparent,
                             foregroundColor: AppColors.primary,
@@ -588,7 +591,9 @@ class About extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.to(() => const LanguageEdit());
+                          },
                           child: const Text(
                             "Add another language",
                             style: TextStyle(
