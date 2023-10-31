@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:ibuddy/core/utils/app_fonts.dart';
 import 'package:ibuddy/core/utils/app_values.dart';
 import 'package:ibuddy/core/utils/i_buddy_icons_icons.dart';
+import 'package:ibuddy/features/screens/buddy/home/account/chat_screen.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../model/slidable_action.dart';
 
@@ -117,126 +118,131 @@ class Chats extends StatelessWidget {
         ),
       ); //Search Bar
     } else {
-      return Slidable(
-        endActionPane: ActionPane(
-          motion: const ScrollMotion(),
-          extentRatio: 0.3,
-          children: [
-            MySlidableAction(
-              onPressed: (context) {},
-              backgroundColor: AppColors.error,
-              foregroundColor: AppColors.white,
-              label: "Delete",
-              spacing: 5,
-              icon: Icons.delete,
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: SizedBox(
-            // width: width + 52,
-            height: 100,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: AppMargin.mPage,
-                    right: AppMargin.mPage,
-                  ),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: Stack(
-                          alignment: Alignment.bottomRight,
-                          children: const [
-                            CircleAvatar(
-                              backgroundColor: AppColors.primary,
-                              radius: 40,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 10),
-                              child: CircleAvatar(
-                                backgroundColor: AppColors.white,
-                                radius: 7,
+      return GestureDetector(
+        onTap: () {
+          Get.to(() => const Chat());
+        },
+        child: Slidable(
+          endActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            extentRatio: 0.3,
+            children: [
+              MySlidableAction(
+                onPressed: (context) {},
+                backgroundColor: AppColors.error,
+                foregroundColor: AppColors.white,
+                label: "Delete",
+                spacing: 5,
+                icon: Icons.delete,
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: SizedBox(
+              // width: width + 52,
+              height: 100,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: AppMargin.mPage,
+                      right: AppMargin.mPage,
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Stack(
+                            alignment: Alignment.bottomRight,
+                            children: const [
+                              CircleAvatar(
+                                backgroundColor: AppColors.primary,
+                                radius: 40,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 10),
                                 child: CircleAvatar(
-                                  backgroundColor: AppColors.green,
-                                  radius: 6,
+                                  backgroundColor: AppColors.white,
+                                  radius: 7,
+                                  child: CircleAvatar(
+                                    backgroundColor: AppColors.green,
+                                    radius: 6,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: width - 120 - 52,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text(
-                                  "Youssef Negm",
-                                  style: TextStyle(
-                                    color: AppColors.black,
-                                    fontFamily: AppFonts.segoe,
-                                    fontWeight: AppFonts.semiBold,
-                                    fontSize: 15,
+                        SizedBox(
+                          width: width - 120 - 52,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: const [
+                                  Text(
+                                    "Youssef Negm",
+                                    style: TextStyle(
+                                      color: AppColors.black,
+                                      fontFamily: AppFonts.segoe,
+                                      fontWeight: AppFonts.semiBold,
+                                      fontSize: 15,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "july 15",
-                                  style: TextStyle(
-                                    color: AppColors.grey,
-                                    fontFamily: AppFonts.segoe,
-                                    fontWeight: AppFonts.semiBold,
-                                    fontSize: 12,
+                                  Text(
+                                    "july 15",
+                                    style: TextStyle(
+                                      color: AppColors.grey,
+                                      fontFamily: AppFonts.segoe,
+                                      fontWeight: AppFonts.semiBold,
+                                      fontSize: 12,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const Text(
-                              "I am trying to reach you .. it is says turned off.",
-                              softWrap: true,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              style: TextStyle(
-                                color: AppColors.grey,
-                                fontFamily: AppFonts.segoe,
-                                fontWeight: AppFonts.semiBold,
-                                fontSize: 13,
+                                ],
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [
-                                Text(
-                                  "Seen",
-                                  style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontFamily: AppFonts.segoe,
-                                    fontWeight: AppFonts.regular,
-                                    fontSize: 12,
-                                  ),
+                              const Text(
+                                "I am trying to reach you .. it is says turned off.",
+                                softWrap: true,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontFamily: AppFonts.segoe,
+                                  fontWeight: AppFonts.semiBold,
+                                  fontSize: 13,
                                 ),
-                              ],
-                            ),
-                          ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: const [
+                                  Text(
+                                    "Seen",
+                                    style: TextStyle(
+                                      color: AppColors.primary,
+                                      fontFamily: AppFonts.segoe,
+                                      fontWeight: AppFonts.regular,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 19),
-                  child: Container(
-                    height: 1,
-                    color: AppColors.grey,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 19),
+                    child: Container(
+                      height: 1,
+                      color: AppColors.grey,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:ibuddy/features/screens/buddy/home/account/chat_screen.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_fonts.dart';
@@ -72,26 +73,19 @@ class Account extends StatelessWidget {
                   children: [
                     Stack(
                       alignment: Alignment.bottomRight,
-                      children: [
-                        const CircleAvatar(
+                      children: const [
+                        CircleAvatar(
                           backgroundColor: AppColors.secondary,
                           radius: 70,
                         ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            width: 28,
-                            height: 28,
-                            margin: const EdgeInsets.only(right: 8, bottom: 8),
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(5),
-                              border:
-                                  Border.all(width: 1, color: AppColors.grey),
-                            ),
-                            child: const Icon(
-                              Icons.camera_alt_rounded,
-                              size: 20,
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 12, right: 12),
+                          child: CircleAvatar(
+                            backgroundColor: AppColors.white,
+                            radius: 8,
+                            child: CircleAvatar(
+                              backgroundColor: AppColors.green,
+                              radius: 6,
                             ),
                           ),
                         ),
@@ -624,8 +618,138 @@ class Account extends StatelessWidget {
                       ],
                     );
                   } else if (option.value == "insights") {
-                    return const Placeholder(
-                      color: AppColors.primary,
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.star,
+                                color: AppColors.primary,
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: AppColors.primary,
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: AppColors.primary,
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: AppColors.primary,
+                                size: 20,
+                              ),
+                              Icon(
+                                Icons.star_half,
+                                color: AppColors.primary,
+                                size: 20,
+                              ),
+                            ],
+                          ),
+                        ), // Rating
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "Followers",
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontFamily: AppFonts.segoe,
+                                  fontWeight: AppFonts.semiBold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                "2.5K",
+                                style: TextStyle(
+                                  color: AppColors.black,
+                                  fontFamily: AppFonts.segoe,
+                                  fontWeight: AppFonts.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ), // Followers
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "Recommended",
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontFamily: AppFonts.segoe,
+                                  fontWeight: AppFonts.semiBold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                "3K",
+                                style: TextStyle(
+                                  color: AppColors.black,
+                                  fontFamily: AppFonts.segoe,
+                                  fontWeight: AppFonts.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ), // Recommended
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "Not Recommended",
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontFamily: AppFonts.segoe,
+                                  fontWeight: AppFonts.semiBold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                "10",
+                                style: TextStyle(
+                                  color: AppColors.black,
+                                  fontFamily: AppFonts.segoe,
+                                  fontWeight: AppFonts.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ), // Not Recommended
+                        const Padding(
+                          padding: EdgeInsets.only(top: 30),
+                          child: Text(
+                            "2K Reviews",
+                            style: TextStyle(
+                              color: AppColors.black,
+                              fontFamily: AppFonts.segoe,
+                              fontWeight: AppFonts.semiBold,
+                              fontSize: 21,
+                            ),
+                          ),
+                        ), // Reviews Header
+                        Padding(
+                          padding: const EdgeInsets.only(top: 7.5, bottom: 20),
+                          child: Column(
+                            children: reviews(width, [{}, {}, {}]),
+                          ),
+                        ),
+                      ],
                     );
                   } else {
                     return const Placeholder(
@@ -638,6 +762,173 @@ class Account extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 100),
+        child: SizedBox(
+          width: 100,
+          height: 50,
+          child: ElevatedButton(
+            onPressed: () {
+              if (Get.previousRoute == '/Chat') {
+                Get.back();
+              }
+              else {
+                Get.to(() => const Chat());
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.white,
+              foregroundColor: AppColors.secondary,
+              padding: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+            ),
+            child: Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Padding(
+                  padding: EdgeInsets.only(left: 7, right: 10),
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.secondary,
+                    radius: 19,
+                  ),
+                ),
+                Text(
+                  "Chat",
+                  style: TextStyle(
+                    color: AppColors.black,
+                    fontFamily: AppFonts.segoe,
+                    fontWeight: AppFonts.semiBold,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
+  }
+
+  List<Widget> reviews(double width, List<Map<String, dynamic>> reviewsList) {
+    List<Widget> reviewsWidgets = [];
+    width -= AppMargin.mPage * 2;
+    for (var element in reviewsList) {
+      reviewsWidgets.add(
+        Container(
+          width: width,
+          height: 120,
+          margin: const EdgeInsets.symmetric(vertical: 12.5),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: AppColors.grey,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(13),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 10),
+                        child: CircleAvatar(
+                          backgroundColor: AppColors.primary,
+                          radius: 30,
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: width - 102,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "Nermin Behiri",
+                                  style: TextStyle(
+                                    color: AppColors.black,
+                                    fontFamily: AppFonts.segoe,
+                                    fontWeight: AppFonts.semiBold,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.star,
+                                      color: AppColors.primary,
+                                      size: 18,
+                                    ),
+                                    Text(
+                                      "5.0",
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontFamily: AppFonts.segoe,
+                                        fontWeight: AppFonts.semiBold,
+                                        fontSize: 12,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            children: const [
+                              Icon(
+                                Icons.flag_circle_rounded,
+                                color: AppColors.primary,
+                                size: 15,
+                              ),
+                              Text(
+                                " England",
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontFamily: AppFonts.segoe,
+                                  fontWeight: AppFonts.semiBold,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Text(
+                            "1 Month ago",
+                            style: TextStyle(
+                              color: AppColors.grey,
+                              fontFamily: AppFonts.segoe,
+                              fontWeight: AppFonts.semiBold,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const Text(
+                "funny person, I enjoyed my time",
+                style: TextStyle(
+                  color: AppColors.black,
+                  fontFamily: AppFonts.segoe,
+                  fontWeight: AppFonts.semiBold,
+                  fontSize: 14,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    return reviewsWidgets;
   }
 }

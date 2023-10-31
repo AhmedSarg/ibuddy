@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ibuddy/core/utils/app_colors.dart';
 import 'package:ibuddy/core/utils/app_values.dart';
-import 'package:ibuddy/features/screens/buddy/home/menu/account_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/account/account_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/followers_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/following_screen.dart';
 import 'package:ibuddy/features/screens/buddy/home/menu/my_posts_screen.dart';
