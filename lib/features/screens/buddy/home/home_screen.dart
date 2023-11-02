@@ -59,7 +59,18 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: ClipRRect(
+      backgroundColor: AppColors.nearlyWhite,
+      body: ListView.builder(
+        controller: scrollController,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: index == 10 ? 50 : 0),
+            child: post(index, width, height),
+          );
+        },
+        itemCount: 11,
+      ),
+      bottomSheet: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(43),
           topRight: Radius.circular(43),
@@ -107,14 +118,6 @@ class Home extends StatelessWidget {
             ),
           ),
         ),
-      ),
-      backgroundColor: AppColors.nearlyWhite,
-      body: ListView.builder(
-        controller: scrollController,
-        itemBuilder: (context, index) {
-          return post(index, width, height);
-        },
-        itemCount: 10,
       ),
     );
   }
@@ -172,7 +175,7 @@ class Home extends StatelessWidget {
       width -= AppMargin.mPage * 2;
       return Padding(
         padding: const EdgeInsets.symmetric(
-            horizontal: AppMargin.mPage, vertical: 10),
+            horizontal: AppMargin.mPage, vertical: 10,),
         child: GestureDetector(
           child: Column(
             children: [
