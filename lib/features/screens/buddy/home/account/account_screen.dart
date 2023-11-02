@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:ibuddy/features/screens/buddy/home/account/chat_screen.dart';
+import 'package:ibuddy/features/screens/buddy/home/account/recommended_screen.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_fonts.dart';
@@ -61,6 +62,61 @@ class Account extends StatelessWidget {
             },
           ),
         ),
+        actions: [
+          PopupMenuButton<String>(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            color: AppColors.nearlyWhite,
+            elevation: 4,
+            offset: const Offset(50, 50),
+            icon: const Padding(
+              padding: EdgeInsets.only(right: AppMargin.mPage - 16),
+              child: Icon(
+                Icons.more_horiz_rounded,
+                color: AppColors.black,
+              ),
+            ),
+            onSelected: (value) {
+              switch (value) {
+                case "Recommended":
+                  Get.to(() => Recommended());
+                  break;
+                case "Not Recommended":
+                  break;
+                case "Copy Link":
+                  break;
+              }
+            },
+            itemBuilder: (context) {
+              return {"Recommended", "Not Recommended", "Copy Link"}
+                  .map((String choice) {
+                Color textColor = AppColors.black;
+                switch (choice) {
+                  case "Recommended":
+                    textColor = AppColors.darkGreen;
+                    break;
+                  case "Not Recommended":
+                    textColor = AppColors.red;
+                    break;
+                }
+                return PopupMenuItem<String>(
+                  height: 30,
+                  value: choice,
+                  child: Text(
+                    choice,
+                    style: TextStyle(
+                      color: textColor,
+                      fontFamily: AppFonts.segoe,
+                      fontWeight: AppFonts.semiBold,
+                      fontSize: 13,
+                    ),
+                  ),
+                );
+              }).toList();
+            },
+          )
+        ],
       ),
       backgroundColor: AppColors.nearlyWhite,
       body: SingleChildScrollView(
@@ -771,8 +827,7 @@ class Account extends StatelessWidget {
             onPressed: () {
               if (Get.previousRoute == '/Chat') {
                 Get.back();
-              }
-              else {
+              } else {
                 Get.to(() => const Chat());
               }
             },
